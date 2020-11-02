@@ -1,2 +1,2 @@
 # iot-first-lab-iot
-first algorithm lab iot
+first algo lab iot
