@@ -36,7 +36,7 @@ def selection_sort(list_to_sort: list, key):
         min_value = num
         for item in range(num, len(list_to_sort)):
             comparison_count += 1
-            if key(list_to_sort[min_value]) > key(list_to_sort[item]):
+            if key(list_to_sort[min_value]) < key(list_to_sort[item]):
                 min_value = item
         list_to_sort[min_value], list_to_sort[num] = list_to_sort[num], list_to_sort[min_value]
         swap_count += 1
@@ -53,10 +53,10 @@ def heapify(list_to_sort, length, item, key):
     right = 2 * item + 2
     comparison_count += 3
 
-    if left < length and key(list_to_sort[item]) > key(list_to_sort[left]):
+    if left < length and key(list_to_sort[item]) < key(list_to_sort[left]):
         least = left
 
-    if right < length and key(list_to_sort[least]) > key(list_to_sort[right]):
+    if right < length and key(list_to_sort[least]) < key(list_to_sort[right]):
         least = right
 
     if least != item:
@@ -84,12 +84,12 @@ def min_heap(list_to_sort: list, key):
 
 if __name__ == '__main__':
     input_data = get_csv('radiators.csv')
-    min_heap(input_data, key=lambda x: x.thermal_power_in_wats)
+    min_heap(input_data, key=lambda x: x.wheelbase_in_mm)
     time.sleep(0.5)
     for i in input_data:
         print(i)
     time.sleep(0.5)
-    selection_sort(input_data, key=lambda x: x.wheelbase_in_mm)
+    selection_sort(input_data, key=lambda x: x.thermal_power_in_wats)
     time.sleep(0.5)
     for i in input_data:
         print(i)
